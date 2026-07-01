@@ -52,6 +52,17 @@
                             );
                             document.head.appendChild(beacon);
                         }
+
+                        // Show a per-domain tagline if this fork has one
+                        if (config.tagline) {
+                            const tagline = document.createElement("p");
+                            const em = document.createElement("em");
+                            em.textContent = config.tagline;
+                            tagline.appendChild(em);
+                            document
+                                .getElementById("placeholder-text")
+                                .before(tagline);
+                        }
                     });
 
                 // Handle buy link click
@@ -82,7 +93,7 @@
                 >
             </nav>
         </header>
-        <p>This is a placeholder for a future project.</p>
+        <p id="placeholder-text">This is a placeholder for a future project.</p>
         <p>
             Have another idea?
             <a href="mailto:company@lineofflig.ht">Get in touch</a> or
