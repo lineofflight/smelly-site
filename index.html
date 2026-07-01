@@ -39,6 +39,19 @@
                     .then((config) => {
                         document.getElementById("escrow-price").value =
                             config.price;
+
+                        // Load Cloudflare Web Analytics if this fork has a token
+                        if (config.analyticsToken) {
+                            const beacon = document.createElement("script");
+                            beacon.defer = true;
+                            beacon.src =
+                                "https://static.cloudflareinsights.com/beacon.min.js";
+                            beacon.setAttribute(
+                                "data-cf-beacon",
+                                JSON.stringify({ token: config.analyticsToken })
+                            );
+                            document.head.appendChild(beacon);
+                        }
                     });
 
                 // Handle buy link click
